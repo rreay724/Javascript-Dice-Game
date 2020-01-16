@@ -4,8 +4,9 @@ GAME RULES:
 - The game has 2 players, playing in rounds
 - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
 - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
+- If player rolls two 6's in a row, his score will be reset to zero
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
-- The first player to reach 100 points on GLOBAL score wins the game
+- The first player to reach set number of points on GLOBAL score wins the game
 
 */
 
@@ -19,31 +20,10 @@ var gamePlaying = true;
 var firstRoll, secondRoll;
 var scoreEntered;
 
-// state variable tells us the condition of the system and we need it when we need to remember something or the state of something
-// in this case - is our game playing or is our game not playing
-
 initializeGame();
 
 var lastDice, lastDice1;
 
-// console.log(dice);
-
-// document.querySelector("#current-" + activePlayer).textContent = dice;
-
-/* <em> creates italic text</em> */
-// document.querySelector("#current-" + activePlayer).innerHTML =
-//   "<em>" + dice + "</em>";
-
-/* this will print whatever is set in score-0 to the console */
-// var x = document.querySelector("#score-0").textContent;
-// console.log(x);
-
-// function btn() {
-//   // Do something here
-// }
-
-// document.querySelector(".btn-roll").addEventListener("click", btn);
-// or can write the function in the event listener, since we'll only be using the function here
 document.querySelector(".btn-roll").addEventListener("click", function() {
   if (gamePlaying) {
     var dice1 = Math.floor(Math.random() * 6) + 1;
@@ -78,17 +58,6 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     lastDice1 = dice2;
   }
 });
-
-// document
-//   .querySelector("#winning-score")
-//   .addEventListener("keypress", function(e) {
-//     if (e.key === "Enter") {
-//       scoreEntered =
-//         document.getElementsById("winning-score").value + scoreEntered;
-//       var scoreEnteredAlert = alert("Winning score is " + scoreEntered);
-//       scoreEnteredAlert;
-//     }
-//   });
 
 document.querySelector(".btn-hold").addEventListener("click", function() {
   if (gamePlaying) {
@@ -138,10 +107,6 @@ function nextPlayer() {
 
   document.getElementsByClassName("current-0").textContent = "0";
   document.getElementsByClassName("current-1").textContent = "0";
-
-  // use query selector and period because we are referencing a class
-  // document.querySelector(".player-0-panel").classList.remove("active");
-  // document.querySelector(".player-1-panel").classList.add("active");
 
   document.querySelector(".player-0-panel").classList.toggle("active");
   document.querySelector(".player-1-panel").classList.toggle("active");
